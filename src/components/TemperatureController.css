@@ -1,0 +1,122 @@
+:root {
+  --step: 12.5%; /* Đặt giá trị mặc định cho biến step */
+}
+
+.temperature-controller {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  gap: 20px; 
+  position: relative;
+  margin: auto;
+  }
+  
+  input[type="range"] {
+    width: 200px;
+    margin-bottom: 20px;
+    transform: rotate(-90deg);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: -10px;
+  }
+  
+  .wrap-thermometer{
+    border: 1px solid black;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .thermometer {
+    position: relative;
+    width: 10px;
+    height: 300px;
+    background-color: #ccc;
+  }
+  
+  .thermometer-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ff0000;
+    transition: height 0.2s ease;
+  }
+  .thermometer span{
+    line-height: 12px;
+    position: absolute;
+    left: 18px;
+  }
+  
+  .zero::before,
+  .five::before,
+  .ten::before,
+  .fifteen::before,
+  .twenty::before,
+  .twentyfive::before,
+  .thirty::before,
+  .thirtyfive::before,
+  .forty::before
+  {
+    display: block;
+    content: "";
+    width: 4px;
+    border-bottom: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: -5px;
+  }
+  .zero{
+    bottom: 0;
+  }
+  
+  .five{
+    bottom:calc(12.5% - 6px) ;
+  }
+
+  .ten{
+    bottom:calc(25% - 6px) ;
+  }
+
+  .fifteen{
+    bottom:calc(37.5% - 6px) ;
+  }
+  .twenty{
+    bottom:calc(50% - 6px) ;
+  }
+
+  .twentyfive{
+    bottom:calc(62.5% - 6px) ;
+  }
+
+  .thirty{
+    bottom:calc(75% - 6px) ;
+  }
+
+  .thirtyfive{
+    bottom:calc(87.5% - 6px) ;
+  }
+
+  .forty{
+    bottom:calc(100% - 6px) ;
+  }
+  .thermometer-bulb {
+    position: absolute;
+    bottom: -5px;
+    left: 48%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #ff0000;
+  }
+  
+  .temperature-display {
+    font-size: 16px;
+    font-weight: bold;
+    width: 25px;
+  }
