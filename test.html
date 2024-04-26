@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+             .box {
+            width: 200px; /* Chiều rộng */
+            height: 100px; /* Chiều cao */
+            background-color: #ccc; /* Màu nền */
+            border: 1px solid #000; /* Viền */
+            margin: 50px auto; /* Căn giữa hộp */
+            perspective: 400px; /* Tạo hiệu ứng 3D */
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Ẩn mặt sau của các mặt */
+        }
+
+        .front {
+            transform: translateZ(-50px); /* Di chuyển mặt trước về phía trước */
+            background-color: #f00; /* Màu mặt trước */
+        }
+
+        .top {
+            transform: rotateX(-90deg); /* Xoay mặt trên lên trên */
+            top: 0;
+            background-color: #0f0;
+        }
+
+        .right {
+            transform: rotateY(90deg); /* Xoay mặt phải sang phải */
+            right: 0;
+            background-color: #00f;
+        }
+
+        .bottom {
+            transform: rotateX(90deg); /* Xoay mặt dưới xuống dưới */
+            bottom: 0;
+            background-color: #ff0;
+        }
+
+        .left {
+            transform: rotateY(-90deg); /* Xoay mặt trái sang trái */
+            left: 0;
+            background-color: #0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="face front"></div>
+        <div class="face top"></div>
+        <div class="face right"></div>
+        <div class="face bottom"></div>
+        <div class="face left"></div>
+    </div>
+</body>
+</html>
