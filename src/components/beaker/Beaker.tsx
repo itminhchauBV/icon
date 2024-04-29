@@ -4,13 +4,16 @@ import "./Beaker.css";
 interface BeakerProps {}
 
 const Beaker: React.FC<BeakerProps> = () => {
-  const min = 25;
-  const max = 100;
-  const step = 10;
-  const heightWater = 230;
+  const min = 0;
+  const max = 1000;
+  const step = 200;
+  const heightWater = 250;
+  const smStep = 50;
   const [water, setWater] = useState<number>(min);
 
   const handleTemperatureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("check", e.target.value);
+
     setWater(Number(e.target.value));
   };
 
@@ -26,16 +29,21 @@ const Beaker: React.FC<BeakerProps> = () => {
     });
     return newList;
   }, [min, max, step]);
+
+  const array = [1, 2, 3, 4];
   return (
     <div className="container">
-      <div className="cup">
-        <div className="top">
-          <div className="circle">
-            <div className="in"></div>
-          </div>
+      <div className="top">
+        <div className="circle">
+          <div className="in"></div>
         </div>
+      </div>
+      <div className="cup">
         <div className="water">
-          <div className="cup1" style={{ height: water * (heightWater / max) }}>
+          <div
+            className="cup1"
+            style={{ height: water * (heightWater / max) + 50 }}
+          >
             <div className="top1">
               <div className="cricle1">
                 <div className="in1"></div>
@@ -48,21 +56,28 @@ const Beaker: React.FC<BeakerProps> = () => {
           style={{
             display: "flex",
             flexDirection: "column-reverse",
-            gap: step * (max / heightWater),
+            gap: heightWater / (max / step) - 16,
             width: "fit-content",
             position: "absolute",
-            height: heightWater,
-            top: 47,
-            left: 50,
+            height: max,
+            bottom: 14,
+            left: "50%",
+            zIndex: 110,
           }}
         >
           {list &&
             list.map((item) => {
               return (
-                <span style={{ fontSize: "12px" }}>
-                  <span>-</span>
-                  {item.title}
-                </span>
+                <>
+                  <span style={{ fontSize: "12.5px", fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold" }}>-</span>
+                    {item.title}
+                  </span>
+                  {/* {array &&
+                    array.map((item, index) => {
+                      return <span>-</span>;
+                    })} */}
+                </>
               );
             })}
         </div>
@@ -71,6 +86,7 @@ const Beaker: React.FC<BeakerProps> = () => {
         type="range"
         min={min}
         max={max}
+        step={smStep}
         value={water}
         onChange={handleTemperatureChange}
         className="progress"

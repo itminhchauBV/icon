@@ -37,6 +37,7 @@
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     border: 1px solid #bdb3b3;
+    overflow: hidden;
   }
   
   .top{
@@ -48,6 +49,7 @@
     height: 60px;
     border-radius: 50%;
     border: 1px solid #bdb3b3;
+    z-index: 100;
   }
   
   .circle
@@ -83,6 +85,8 @@
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     border: 1px solid #bdb3b3;
+    z-index: 0;
+   
   }
   
   .water{
