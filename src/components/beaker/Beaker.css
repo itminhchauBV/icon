@@ -1,5 +1,5 @@
  
-   input[type="range"] {
+   /* input[type="range"] {
       width: 200px;
       margin-bottom: 20px;
       transform: rotate(-90deg);
@@ -8,7 +8,7 @@
       top: 50%;
       left: 150px;
     }
-    
+     */
     *{
       margin: 0;
       padding: 0;
@@ -22,12 +22,12 @@
    
   }
   
-  .container{
+  /* .container{
     position: relative;
     top: 50px;
-  }
+  } */
   
-  .cup{
+  /* .cup{
     position: relative;
     width: 210px;
     height: 300px;
@@ -36,9 +36,9 @@
     border-bottom-right-radius: 50px;
     border: 1px solid #bdb3b3;
     overflow: hidden;
-  }
+  } */
   
-  .top{
+  /* .top{
     position: absolute;
     top: -30px;
     left:0;
@@ -48,9 +48,10 @@
     border-radius: 50%;
     border: 1px solid #bdb3b3;
     z-index: 100;
-  }
+    overflow: visible;
+  } */
   
-  .circle
+  /* .circle
   {
     position: absolute;
     top:5px;
@@ -61,8 +62,8 @@
     background: linear-gradient(to left, #d0e9f9, #fff);
     box-sizing: border-box;
     border: 1px solid #bdb3b3;
-  }
-  .in{
+  } */
+  /* .in{
     position: absolute;
     top: 0;
     left: 0;
@@ -70,12 +71,12 @@
     height: 100%;
     background: linear-gradient(#d0e9f9, #fff);
     border-radius: 50%;
-  }
+  } */
   
   
   
   
-  .water{
+  /* .water{
     position: absolute;
     bottom: -201px;
     width: 209px;
@@ -85,13 +86,13 @@
     border: 1px solid #bdb3b3;
     z-index: 0;
    
-  }
+  } */
   
-  .wrap-water{
+  /* .wrap-water{
     position: relative;
     top: 97px;
-  }
-  .water-top{
+  } */
+  /* .water-top{
     position: absolute;
     top: -30px;
     left: 0;
@@ -100,9 +101,9 @@
     height: 62px;
     border-radius: 50%;
     border: 1px solid #bdb3b3;
-  }
+  } */
   
-  .water-cricle
+  /* .water-cricle
   {
     position: absolute;
     top: 0px;
@@ -112,8 +113,8 @@
     background: linear-gradient(#d0e9f9, #fff);
     border-radius: 50%;
     border: 1px solid #bdb3b3;
-  }
-  .water-in{
+  } */
+  /* .water-in{
     position: absolute;
     top: 0;
     left: 0;
@@ -121,5 +122,5 @@
     height: 100%;
     background: linear-gradient(#c5f1c6, #fff);
     border-radius: 50%;
-  }
+  } */
     
