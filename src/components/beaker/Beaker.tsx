@@ -2,35 +2,127 @@ import React, { useMemo, useState } from "react";
 import "./Beaker.css";
 
 interface BeakerProps {}
+interface Item {
+  id: number;
+  title: string;
+}
 
 const Beaker: React.FC<BeakerProps> = () => {
+  const max = 2000;
   const min = 0;
-  const max = 1000;
-  const step = 200;
+  const step = 400;
+  const smallStep = 100;
   const heightWater = 250;
-  const smStep = 50;
-  const [water, setWater] = useState<number>(min);
+  const [water, setWater] = useState<number>(0);
 
   const handleTemperatureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("check", e.target.value);
+    console.log("check value", e.target.value);
 
     setWater(Number(e.target.value));
   };
 
-  const list = useMemo(() => {
-    let value: number = 0;
-    const newList = [...Array(max / step + 1)].map((item) => {
-      const object = {
-        id: Math.random(),
-        title: value,
-      };
-      value = value + step;
-      return object;
-    });
-    return newList;
-  }, [min, max, step]);
+  const validate = (
+    max: number,
+    min: number,
+    step: number,
+    smallStep: number
+  ): boolean => {
+    if (max < min) {
+      console.error("max đang nhor hơn min");
+      return false;
+    }
 
-  const array = [1, 2, 3, 4];
+    // Kiểm tra xem chiều cao có là bội số của bước nhảy lớn không
+    if ((max - min) % step !== 0) {
+      console.error(
+        "lượng nước lớn nhất không phải là bội số của bước nhảy lớn"
+      );
+      return false;
+    }
+
+    // Kiểm tra xem chiều cao có là bội số của bước nhảy nhỏ không
+    if ((max - min) % smallStep !== 0) {
+      console.error(
+        "lượng nước lớn nhất không thể là bội số của bước nhảy nhỏ"
+      );
+      return false;
+    }
+
+    // Nếu không có vấn đề nào, trả về true
+    return true;
+  };
+  /* xxxxxxxx */
+
+  const itemFake: Item = {
+    id: Math.random(),
+    title: "-",
+  };
+  const lastedItem: Item[] = [];
+
+  const getItemFakes = (step: number, smallStep: number): Item[] => {
+    const items: Item[] = [];
+    for (let i = 1; i < step / smallStep; i++) {
+      items.push(itemFake);
+    }
+    return items;
+  };
+
+  const handleItem = (
+    max: number,
+    min: number,
+    step: number,
+    smallStep: number
+  ): Item[] => {
+    if (validate(max, min, step, smallStep)) {
+      const items: Item[] = [];
+      for (let i = 0; i <= max - min; i += step) {
+        items.push({ id: Math.random(), title: (i + min).toString() });
+      }
+
+      items.forEach((item) => {
+        if (item.title === max.toString()) {
+          lastedItem.push(item);
+        } else {
+          lastedItem.push(item, ...getItemFakes(step, smallStep));
+        }
+      });
+      return lastedItem;
+    }
+    return lastedItem;
+  };
+
+  const handleRenderItem = (title: string) => {
+    if (parseInt(title) === 0) {
+      return (
+        <span style={{ fontSize: "10.5px", fontWeight: "bold" }}>
+          <span style={{ fontWeight: "bold" }}>- </span>
+          {title}
+        </span>
+      );
+    }
+    if (!parseInt(title)) {
+      return (
+        <span style={{ fontSize: "10.5px", fontWeight: "bold" }}> {title}</span>
+      );
+    } else {
+      if (parseInt(title) === max) {
+        return (
+          <span style={{ fontSize: "10.5px", fontWeight: "bold" }}>
+            <span style={{ fontWeight: "bold" }}>- </span>
+            {title} mL
+          </span>
+        );
+      } else {
+        return (
+          <span style={{ fontSize: "10.5px", fontWeight: "bold" }}>
+            <span style={{ fontWeight: "bold" }}>- </span>
+            {title}
+          </span>
+        );
+      }
+    }
+  };
+
   return (
     <div className="container">
       <div className="top">
@@ -39,14 +131,14 @@ const Beaker: React.FC<BeakerProps> = () => {
         </div>
       </div>
       <div className="cup">
-        <div className="water">
+        <div className="wrap-water">
           <div
-            className="cup1"
-            style={{ height: water * (heightWater / max) + 50 }}
+            className="water"
+            style={{ height: (water - min) * (heightWater / max) + 50 - 12.5 }}
           >
-            <div className="top1">
-              <div className="cricle1">
-                <div className="in1"></div>
+            <div className="water-top">
+              <div className="water-cricle">
+                <div className="water-in"></div>
               </div>
             </div>
           </div>
@@ -56,37 +148,33 @@ const Beaker: React.FC<BeakerProps> = () => {
           style={{
             display: "flex",
             flexDirection: "column-reverse",
-            gap: heightWater / (max / step) - 16,
             width: "fit-content",
             position: "absolute",
-            height: max,
-            bottom: 14,
+            height: heightWater,
+            bottom: 20,
+            gap: 0.5,
             left: "50%",
             zIndex: 110,
           }}
         >
-          {list &&
-            list.map((item) => {
-              return (
-                <>
-                  <span style={{ fontSize: "12.5px", fontWeight: "bold" }}>
-                    <span style={{ fontWeight: "bold" }}>-</span>
-                    {item.title}
-                  </span>
-                  {/* {array &&
-                    array.map((item, index) => {
-                      return <span>-</span>;
-                    })} */}
-                </>
-              );
-            })}
+          {handleItem(max, min, step, smallStep).map((item) => {
+            return (
+              <div
+                style={{
+                  height: heightWater / (max / smallStep + 1),
+                }}
+              >
+                {handleRenderItem(item.title)}
+              </div>
+            );
+          })}
         </div>
       </div>
       <input
         type="range"
         min={min}
         max={max}
-        step={smStep}
+        step={smallStep}
         value={water}
         onChange={handleTemperatureChange}
         className="progress"

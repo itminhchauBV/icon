@@ -1,6 +1,4 @@
-:root {
-    --step: 12.5%; /* Đặt giá trị mặc định cho biến step */
-  }  
+ 
    input[type="range"] {
       width: 200px;
       margin-bottom: 20px;
@@ -77,7 +75,7 @@
   
   
   
-  .cup1{
+  .water{
     position: absolute;
     bottom: -201px;
     width: 209px;
@@ -89,11 +87,11 @@
    
   }
   
-  .water{
+  .wrap-water{
     position: relative;
     top: 97px;
   }
-  .top1{
+  .water-top{
     position: absolute;
     top: -30px;
     left: 0;
@@ -104,7 +102,7 @@
     border: 1px solid #bdb3b3;
   }
   
-  .circle1
+  .water-cricle
   {
     position: absolute;
     top: 0px;
@@ -115,7 +113,7 @@
     border-radius: 50%;
     border: 1px solid #bdb3b3;
   }
-  .in1{
+  .water-in{
     position: absolute;
     top: 0;
     left: 0;
@@ -125,101 +123,3 @@
     border-radius: 50%;
   }
     
-    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    .zero::before,
-    .five::before,
-    .ten::before,
-    .fifteen::before,
-    .twenty::before,
-    .twentyfive::before,
-    .thirty::before,
-    .thirtyfive::before,
-    .forty::before
-    {
-      display: block;
-      content: "";
-      width: 4px;
-      border-bottom: 1px solid black;
-      position: absolute;
-      top: 50%;
-      left: -5px;
-    }
-    .zero{
-      bottom: 0;
-    }
-    
-    .five{
-      bottom:calc(12.5% - 6px) ;
-    }
-  
-    .ten{
-      bottom:calc(25% - 6px) ;
-    }
-  
-    .fifteen{
-      bottom:calc(37.5% - 6px) ;
-    }
-    .twenty{
-      bottom:calc(50% - 6px) ;
-    }
-  
-    .twentyfive{
-      bottom:calc(62.5% - 6px) ;
-    }
-  
-    .thirty{
-      bottom:calc(75% - 6px) ;
-    }
-  
-    .thirtyfive{
-      bottom:calc(87.5% - 6px) ;
-    }
-  
-    .forty{
-      bottom:calc(100% - 6px) ;
-    }
-    .thermometer-bulb {
-      position: absolute;
-      bottom: -5px;
-      left: 48%;
-      transform: translateX(-50%);
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background-color: #ff0000;
-    }
-    
-    .temperature-display {
-      font-size: 16px;
-      font-weight: bold;
-      width: 25px;
-    }

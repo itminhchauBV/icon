@@ -6,7 +6,7 @@ function App() {
   return (
     <div
       className="App"
-      style={{ display: "flex", alignItems: "center", gap: "36px" }}
+      // style={{ display: "flex", alignItems: "center", gap: "36px" }}
     >
       {/* <TemperatureController /> */}
       <Beaker />
