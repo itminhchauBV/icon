@@ -8,8 +8,8 @@ function App() {
       className="App"
       // style={{ display: "flex", alignItems: "center", gap: "36px" }}
     >
-      {/* <TemperatureController /> */}
-      <Beaker />
+      <TemperatureController />
+      {/* <Beaker /> */}
     </div>
   );
 }

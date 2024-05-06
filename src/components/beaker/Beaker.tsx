@@ -7,10 +7,10 @@ interface Item {
 }
 
 const Beaker: React.FC<BeakerProps> = () => {
-  const max = 2000;
-  const min = 0;
-  const step = 400;
-  const smallStep = 100;
+  const max = 1000;
+  const min = 200;
+  const step = 200;
+  const smallStep = 50;
   const heightWater = 250;
   const [water, setWater] = useState<number>(0);
 
@@ -74,7 +74,7 @@ const Beaker: React.FC<BeakerProps> = () => {
   ): Item[] => {
     if (validate(max, min, step, smallStep)) {
       const items: Item[] = [];
-      for (let i = 0; i <= max - min; i += step) {
+      for (let i = 0; i <= max; i += step) {
         items.push({ id: Math.random(), title: (i + min).toString() });
       }
 
