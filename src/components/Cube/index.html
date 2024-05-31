@@ -1,32 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Cube</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>3D Cube with Water Effect</title>
+    <style>
+      :root {
+        --size: 300px;
+      }
+
+      body {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        display: grid;
+        place-content: center;
+        min-height: 80vh;
+      }
+
+      /* container */
+      .container {
+        margin-top: 50px;
+        perspective: 1000px;
+        width: var(--size);
+        height: var(--size);
+      }
+
+      .cube {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform: rotateX(-15deg) rotateY(15deg);
+        transition: all 0.85s cubic-bezier(1, -0.75, 0.5, 1.2);
+      }
+
+      /* Faces */
+      .face {
+        position: absolute;
+        border: 1px solid rgba(142, 142, 142, 0.683);
+        box-shadow: inset 0 0 60px rgba(208, 233, 249, 0.3); /* water effect */
+        width: var(--size);
+        height: var(--size);
+        line-height: var(--size);
+        text-align: center;
+        font-size: 1.25rem;
+        background-color: rgba(208, 233, 249, 0.1); /* blue color for water */
+        opacity: 0.8;
+      }
+
+      .front {
+        transform: translateZ(150px);
+      }
+
+      .back {
+        transform: rotateY(180deg) translateZ(150px);
+      }
+
+      .top {
+        transform: rotateX(90deg) translateZ(150px);
+      }
+      .top2 {
+        transform: rotateX(90deg) translateZ(0px);
+        background-color: rgba(0, 255, 47, 0.1); 
+      }
+
+      .right {
+        transform: rotateY(90deg) translateZ(150px);
+      }
+
+      .left {
+        transform: rotateY(-90deg) translateZ(150px);
+      }
+
+      .bottom {
+        transform: rotateX(-90deg) translateZ(150px);
+      }
+
+      /* Interactions */
+
+    </style>
   </head>
   <body>
-
-    <div class="container relative">
+    <div class="container">
       <div class="cube">
-        <div class="face front "></div>
+        <div class="face front"></div>
         <div class="face back"></div>
         <div class="face top"></div>
+        <div class="face top2"></div>
         <div class="face right"></div>
         <div class="face left"></div>
         <div class="face bottom"></div>
+      </div>
     </div>
-    <div class="container1 absolute top-[-50px]">
-        <div class="cube1">
-          <div class="face1 front1 ">Front</div>
-          <div class="face1 back1">Back</div>
-          <div class="face1 top1">Top</div>
-          <div class="face1 right1">Right</div>
-          <div class="face1 left1">Left</div>
-          <div class="face1 bottom1">Bottom</div>
-      </div>
-      </div>
   </body>
 </html>

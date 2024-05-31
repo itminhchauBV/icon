@@ -3,61 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ruler with Numbers</title>
     <style>
-             .box {
-            width: 200px; /* Chiều rộng */
-            height: 100px; /* Chiều cao */
-            background-color: #ccc; /* Màu nền */
-            border: 1px solid #000; /* Viền */
-            margin: 50px auto; /* Căn giữa hộp */
-            perspective: 400px; /* Tạo hiệu ứng 3D */
+        .ruler {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 50px;
         }
 
-        .face {
+        .segment {
+            position: relative;
+            width: 200px;
+            height: 30px;
+            background-color: lightblue;
+            border-bottom: 1px solid #ccc; /* Đường viền để tạo sự phân cách */
+        }
+
+        .segment span {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden; /* Ẩn mặt sau của các mặt */
+            font-size: 14px;
+            font-weight: bold;
+            color: black;
         }
 
-        .front {
-            transform: translateZ(-50px); /* Di chuyển mặt trước về phía trước */
-            background-color: #f00; /* Màu mặt trước */
+        .segment .top {
+            top: -20px; /* Đặt số ở phía trên */
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .top {
-            transform: rotateX(-90deg); /* Xoay mặt trên lên trên */
-            top: 0;
-            background-color: #0f0;
-        }
-
-        .right {
-            transform: rotateY(90deg); /* Xoay mặt phải sang phải */
-            right: 0;
-            background-color: #00f;
-        }
-
-        .bottom {
-            transform: rotateX(90deg); /* Xoay mặt dưới xuống dưới */
-            bottom: 0;
-            background-color: #ff0;
-        }
-
-        .left {
-            transform: rotateY(-90deg); /* Xoay mặt trái sang trái */
-            left: 0;
-            background-color: #0ff;
+        .segment .bottom {
+            bottom: -20px; /* Đặt số ở phía dưới */
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <div class="face front"></div>
-        <div class="face top"></div>
-        <div class="face right"></div>
-        <div class="face bottom"></div>
-        <div class="face left"></div>
-    </div>
+    <div class="ruler" id="ruler"></div>
+
+    <script>
+        const values = Array.from({ length: 11 }, (_, i) => i); // Tạo mảng từ 0 đến 10
+        const rulerElement = document.getElementById('ruler');
+
+        values.forEach((value, index) => {
+            const segment = document.createElement('div');
+            segment.className = 'segment';
+
+            if (index === 0) {
+                // Thẻ đầu tiên có số ở cả cạnh trên và cạnh dưới
+                const numberTop = document.createElement('span');
+                numberTop.className = 'top';
+                numberTop.textContent = value;
+                segment.appendChild(numberTop);
+            }
+
+            // Tất cả các thẻ đều có số ở cạnh dưới
+            const numberBottom = document.createElement('span');
+            numberBottom.className = 'bottom';
+            numberBottom.textContent = value;
+            segment.appendChild(numberBottom);
+
+            rulerElement.appendChild(segment);
+        });
+    </script>
 </body>
 </html>
